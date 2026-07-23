@@ -10,7 +10,7 @@
 
     <details class="teacher-info">
       <summary>Teacher instructions</summary>
-      <p>GeoRiddles are math puzzles that reveal the steps to code a mystery shape or letter. Use them for relay races, spelling out mystery words, and more!</p>
+      <p>GeoRiddles are math puzzles that reveal the steps to code a mystery shape or letter. Use them for relay races, spelling out mystery words, or whatever else you come up with!</p>
       <ol>
         <li>
           <strong>Pick a shape and choose a unit.</strong>
@@ -19,7 +19,7 @@
         </li>
         <li>
           <strong>Choose types of math problems to include as clues.</strong>
-          <span class="step-detail">Add <b>No transformation</b> to keep some numbers unchanged - handy for shapes with more steps.</span>
+          <span class="step-detail">Add <b>No transformation</b> to keep some numbers unchanged. This is helpful for shapes with more steps.</span>
         </li>
         <li>
           <strong>Copy the clues and share them with students!</strong>
