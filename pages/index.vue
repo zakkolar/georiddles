@@ -22,7 +22,7 @@
           <span class="step-detail">Add <b>No transformation</b> to keep some numbers unchanged. This is helpful for shapes with more steps.</span>
         </li>
         <li>
-          <strong>Copy the clues and share them with students!</strong>
+          <strong>Copy the clues and share them with students.</strong>
           <span class="step-detail">If necessary, click <b>Regenerate</b> to randomize new math problems.</span>
         </li>
       </ol>
