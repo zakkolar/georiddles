@@ -689,7 +689,7 @@ export default Vue.extend({
 .regen-btn {
   background: var(--ink);
   color: #fff;
-  border: none;
+  border: 1.5px solid var(--ink);
 }
 
 .copy-btn {
@@ -711,6 +711,7 @@ export default Vue.extend({
 .regen-btn:hover {
   background: var(--yellow);
   color: var(--ink);
+  border-color: var(--yellow);
 }
 
 .clue-list {
