@@ -6,11 +6,27 @@
         <h1 class="hero__title">GeoRiddles</h1>
       </div>
       <p class="hero__eyebrow">Geometry riddle generator</p>
-      <p class="hero__lede">
-        Pick a shape, choose the math, then hand the clues to your class.
-        After students solve the math, they can program a robot to follow the steps and draw the shape.
-      </p>
     </header>
+
+    <details class="teacher-info">
+      <summary>Teacher instructions</summary>
+      <p>GeoRiddles are math puzzles that reveal the steps to code a mystery shape or letter. Use them for relay races, spelling out mystery words, and more!</p>
+      <ol>
+        <li>
+          <strong>Pick a shape and choose a unit.</strong>
+          <p class="step-detail">Centimeters for robots (Root, Dash with a marker attachment)</p>
+            <p class="step-detail">Pixels for virtual coding environments (Snap<i>!</i>, Scratch with the pen extension)</p>
+        </li>
+        <li>
+          <strong>Choose types of math problems to include as clues.</strong>
+          <span class="step-detail">Add "No transformation" to keep some numbers unchanged - handy for shapes with more steps.</span>
+        </li>
+        <li>
+          <strong>Copy the clues and share them with students!</strong>
+          <span class="step-detail">If necessary, click "regenerate" to randomize new math problems.</span>
+        </li>
+      </ol>
+    </details>
 
     <main class="builder">
       <section class="panel panel--shape" aria-labelledby="shape-heading">
@@ -353,7 +369,7 @@ export default Vue.extend({
 }
 
 .hero {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   --geo-mark-size: clamp(1.8rem, 4.5vw, 3rem);
   --hero-indent: calc(var(--geo-mark-size) * 0.88 + 0.4rem);
 }
@@ -383,12 +399,74 @@ export default Vue.extend({
   text-transform: uppercase;
 }
 
-.hero__lede {
-  font-size: 1.05rem;
-  line-height: 1.55;
-  max-width: 52ch;
+.teacher-info {
+  max-width: 70ch;
+  margin-bottom: 2rem;
+}
+
+.teacher-info summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--blue);
+}
+
+.teacher-info summary:hover {
+  color: var(--red);
+}
+
+.teacher-info[open] summary {
+  margin-bottom: 0.75rem;
+}
+
+.teacher-info p {
+  font-size: 1rem;
+  line-height: 1.6;
   opacity: 0.85;
-  margin-left: var(--hero-indent);
+}
+
+.teacher-info p + ol {
+  margin-top: 0.85rem;
+}
+
+.teacher-info ol {
+  list-style: none;
+  counter-reset: instr;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.teacher-info ol li {
+  counter-increment: instr;
+  position: relative;
+  padding-left: 1.8rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.teacher-info ol li::before {
+  content: counter(instr) '.';
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.teacher-info ol li strong {
+  display: block;
+  opacity: 0.95;
+}
+
+.teacher-info ol li .step-detail {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 0.15rem;
 }
 
 .builder {
