@@ -55,6 +55,15 @@ export abstract class MoveStep extends Step {
     return `<b>Move ${this.direction}</b> by ${transformation.transform(this.distance)}`;
   }
 
+  /**
+   * @param transformation The Transformation to apply to the (already-scaled) distance.
+   * @param scale Multiplier applied to this Step's distance before the Transformation runs. Defaults to 1.
+   */
+  generateText(transformation: Transformation | Transformation[], scale: number = 1): String {
+    const thisTransformation = Step.chooseTransformation(transformation);
+    return `<b>Move ${this.direction}</b> by ${thisTransformation.transform(this.distance * scale)}`;
+  }
+
 
 
 }

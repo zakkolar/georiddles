@@ -46,12 +46,12 @@ export abstract class Shape {
     return num;
   }
 
-  generateStepList(transformation: Transformation | Transformation[]): String[] {
+  generateStepList(transformation: Transformation | Transformation[], scale: number = 1): String[] {
     const steps = [];
     for(let step of this.steps){
 
       // @ts-ignore
-      steps.push(step.generateText(transformation));
+      steps.push(step.generateText(transformation, scale));
     }
     return steps;
   }

@@ -22,18 +22,31 @@
           <p class="panel__desc">What do we draw?</p>
         </header>
         <div class="panel__body">
-          <div class="select-shell">
-            <select id="shape-select" class="select" aria-label="Shape" v-model="currentShapeKey">
-              <optgroup v-for="category of shapeCategories" :key="category" :label="category">
-                <option
-                  v-for="shape of shapes.filter(item => item.category === category)"
-                  :key="shape.label"
-                  :value="shape.label"
-                >
-                  {{ shape.label }} ({{ shape.shape.numSteps() }} steps)
-                </option>
-              </optgroup>
-            </select>
+          <div class="field-shell">
+            <label for="shape-select" class="field-label">Shape</label>
+            <div class="select-shell">
+              <select id="shape-select" class="select" v-model="currentShapeKey">
+                <optgroup v-for="category of shapeCategories" :key="category" :label="category">
+                  <option
+                    v-for="shape of shapes.filter(item => item.category === category)"
+                    :key="shape.label"
+                    :value="shape.label"
+                  >
+                    {{ shape.label }} ({{ shape.shape.numSteps() }} steps)
+                  </option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-shell">
+            <label for="unit-select" class="field-label">Units</label>
+            <div class="select-shell">
+              <select id="unit-select" class="select" v-model="unit">
+                <option value="cm">Centimeters (robot)</option>
+                <option value="px">Pixels (on-screen)</option>
+              </select>
+            </div>
           </div>
 
           <div class="thumbnail">
@@ -130,6 +143,7 @@ export default Vue.extend({
     chosenTransformationKeys: String[],
     currentSteps: String[],
     currentShapeKey: string | null,
+    unit: string,
     copyState: string,
     shapeSources: []
   } {
@@ -140,6 +154,7 @@ export default Vue.extend({
       renderer: null,
       currentSteps: [],
       currentShapeKey: null,
+      unit: 'cm',
       copyState: 'idle',
       shapeSources: [
         {
@@ -223,6 +238,10 @@ export default Vue.extend({
       return this.shapes.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
     },
 
+    movementScale(){
+      return this.unit === 'px' ? 10 : 1;
+    },
+
     copyLabel(){
       if(this.copyState === 'copied') return 'Copied!';
       if(this.copyState === 'error') return 'Copy failed';
@@ -236,12 +255,15 @@ export default Vue.extend({
     },
     currentTransformations(oldTransformation, newTransformation){
       this.generateSteps();
+    },
+    movementScale(){
+      this.generateSteps();
     }
   },
   methods: {
     generateSteps(){
       if(this.currentShape && this.currentTransformations.length > 0){
-        this.currentSteps = this.currentShape.generateStepList(this.currentTransformations);
+        this.currentSteps = this.currentShape.generateStepList(this.currentTransformations, this.movementScale);
       }
       else {
         this.currentSteps = [];
@@ -500,6 +522,20 @@ export default Vue.extend({
   background: var(--panel);
   color: var(--ink);
   cursor: pointer;
+}
+
+.field-shell + .field-shell {
+  margin-top: 0.85rem;
+}
+
+.field-label {
+  display: block;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  margin-bottom: 0.35rem;
 }
 
 .select-shell::after {

@@ -44,9 +44,10 @@ export abstract class Step {
   /**
    * Generates a string that describes the Step in words, including a transformation that turns key numbers into math problems.
    * @param transformation The Transformation to apply to the number(s) in Step. If a list is provided, one is chosen randomly each time the text is generated.
+   * @param scale Multiplier applied to movement distances only (ignored by Steps that don't represent a distance). Defaults to 1, i.e. no change.
    * @return Description of the Step in words.
    */
-  generateText(transformation: Transformation | Transformation[]): String {
+  generateText(transformation: Transformation | Transformation[], scale: number = 1): String {
    const thisTransformation = Step.chooseTransformation(transformation);
     return this.transformText(thisTransformation);
   }

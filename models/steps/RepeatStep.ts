@@ -25,11 +25,11 @@ export class RepeatStep extends Step {
     return this.steps.length + 1;
   }
 
-  generateText(transformation: Transformation | Transformation[]): String {
+  generateText(transformation: Transformation | Transformation[], scale: number = 1): String {
 
     let text =  `${this.transformText(Step.chooseTransformation(transformation))}<ol>`;
     for(let step of this.steps){
-      text += `<li>${step.generateText(transformation)}</li>`;
+      text += `<li>${step.generateText(transformation, scale)}</li>`;
     }
     text+=`</ol>`;
     return text;
