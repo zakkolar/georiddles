@@ -639,14 +639,14 @@ export default Vue.extend({
 }
 
 .canvas-frame__tick--tl {
-  top: -3px;
-  left: -3px;
+  top: -2.5px;
+  left: -2.5px;
   border-top: 3px solid var(--blue);
   border-left: 3px solid var(--blue);
 }
 
 .canvas-frame__tick--tr {
-  top: -3px;
+  top: -2.5px;
   right: -3px;
   border-top: 3px solid var(--yellow);
   border-right: 3px solid var(--yellow);
