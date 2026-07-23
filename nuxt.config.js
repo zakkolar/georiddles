@@ -7,24 +7,23 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'geo-riddles',
+    title: 'GeoRiddles | Geometry Riddle Generator',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Generate math riddles that reveal the steps to program a robot to draw a shape or letter.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/fonts/fonts.css' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    'tachyons/css/tachyons.css'
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
