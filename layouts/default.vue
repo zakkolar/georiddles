@@ -45,6 +45,7 @@ html {
 
 body {
   background: var(--paper);
+
 }
 
 *,
@@ -65,6 +66,11 @@ a:hover {
 :focus-visible {
   outline: 3px solid var(--red);
   outline-offset: 2px;
+}
+
+::selection {
+  background: var(--ink);
+  color: #fff;
 }
 
 button {
