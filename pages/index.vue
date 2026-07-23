@@ -14,16 +14,16 @@
       <ol>
         <li>
           <strong>Pick a shape and choose a unit.</strong>
-          <p class="step-detail">Centimeters for robots (Root, Dash with a marker attachment)</p>
-            <p class="step-detail">Pixels for virtual coding environments (Snap<i>!</i>, Scratch with the pen extension)</p>
+          <p class="step-detail"><b>Centimeters</b> for robots, like Root or Dash with a marker attachment</p>
+          <p class="step-detail"><b>Pixels</b> for virtual coding environments, like <a target="_blank" href="https://snap.berkeley.edu">Snap<i>!</i></a> or <a href="https://scratch.mit.edu" target="_blank">Scratch</a> with the pen extension</p>
         </li>
         <li>
           <strong>Choose types of math problems to include as clues.</strong>
-          <span class="step-detail">Add "No transformation" to keep some numbers unchanged - handy for shapes with more steps.</span>
+          <span class="step-detail">Add <b>No transformation</b> to keep some numbers unchanged - handy for shapes with more steps.</span>
         </li>
         <li>
           <strong>Copy the clues and share them with students!</strong>
-          <span class="step-detail">If necessary, click "regenerate" to randomize new math problems.</span>
+          <span class="step-detail">If necessary, click <b>Regenerate</b> to randomize new math problems.</span>
         </li>
       </ol>
     </details>
