@@ -13,7 +13,7 @@
       <p>GeoRiddles are math puzzles that reveal the steps to code a mystery shape or letter. Use them for relay races, spelling out mystery words, or whatever else you come up with!</p>
       <ol>
         <li>
-          <strong>Pick a shape and choose a unit.</strong>
+          <strong>Pick a shape and unit.</strong>
           <p class="step-detail"><b>Centimeters</b> for robots, like Root or Dash with a marker attachment</p>
           <p class="step-detail"><b>Pixels</b> for virtual coding environments, like <a target="_blank" href="https://snap.berkeley.edu">Snap<i>!</i></a> or <a href="https://scratch.mit.edu" target="_blank">Scratch</a> with the pen extension</p>
         </li>
@@ -55,26 +55,35 @@
           </div>
 
           <div class="field-shell">
-            <label for="unit-select" class="field-label">Units</label>
-            <div class="select-shell">
-              <select id="unit-select" class="select" v-model="unit">
-                <option value="cm">Centimeters (robot)</option>
-                <option value="px">Pixels (on-screen)</option>
-              </select>
+            <span class="field-label">Units</span>
+            <div class="radio-group">
+              <label class="radio">
+                <input class="radio__input" type="radio" name="unit" value="cm" v-model="unit">
+                <span class="radio__dot" aria-hidden="true"></span>
+                <span class="radio__text">Centimeters (robot)</span>
+              </label>
+              <label class="radio">
+                <input class="radio__input" type="radio" name="unit" value="px" v-model="unit">
+                <span class="radio__dot" aria-hidden="true"></span>
+                <span class="radio__text">Pixels (on-screen)</span>
+              </label>
             </div>
           </div>
 
-          <div class="thumbnail">
-            <div class="canvas-frame">
-              <span class="canvas-frame__tick canvas-frame__tick--tl" aria-hidden="true"></span>
-              <span class="canvas-frame__tick canvas-frame__tick--tr" aria-hidden="true"></span>
-              <span class="canvas-frame__tick canvas-frame__tick--br" aria-hidden="true"></span>
-              <canvas id="preview" width="200" height="200"></canvas>
+          <div class="field-shell">
+            <span class="field-label">Preview</span>
+            <div class="thumbnail">
+              <div class="canvas-frame">
+                <span class="canvas-frame__tick canvas-frame__tick--tl" aria-hidden="true"></span>
+                <span class="canvas-frame__tick canvas-frame__tick--tr" aria-hidden="true"></span>
+                <span class="canvas-frame__tick canvas-frame__tick--br" aria-hidden="true"></span>
+                <canvas id="preview" width="200" height="200"></canvas>
+              </div>
             </div>
           </div>
 
           <details class="sources">
-            <summary>Where these shapes come from</summary>
+            <summary>Shape sources</summary>
             <ul class="sources__list">
               <li v-for="source in shapeSources" :key="source.name">
                 <span class="sources__name">{{ source.name }}</span>
@@ -615,7 +624,7 @@ export default Vue.extend({
 }
 
 .sources {
-  margin-top: 1.15rem;
+  margin-top: 0.85rem;
   font-size: 0.9rem;
 }
 
@@ -714,14 +723,56 @@ export default Vue.extend({
   outline-offset: 2px;
 }
 
-/* ---------- Shape thumbnail ---------- */
+/* ---------- Units radio buttons ---------- */
 
-.thumbnail {
-  margin-top: 1.15rem;
+.radio-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 0.55rem;
 }
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+.radio__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.radio__dot {
+  width: 20px;
+  height: 20px;
+  border: var(--rule-thin) solid var(--ink);
+  border-radius: 50%;
+  background: var(--panel);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.radio__input:checked + .radio__dot::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.radio__input:focus-visible + .radio__dot {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ---------- Shape thumbnail ---------- */
 
 .canvas-frame {
   position: relative;
@@ -747,14 +798,14 @@ export default Vue.extend({
 
 .canvas-frame__tick--tr {
   top: -2.5px;
-  right: -3px;
+  right: -2.5px;
   border-top: 3px solid var(--yellow);
   border-right: 3px solid var(--yellow);
 }
 
 .canvas-frame__tick--br {
-  bottom: -3px;
-  right: -3px;
+  bottom: -2.5px;
+  right: -2.5px;
   border-bottom: 3px solid var(--red);
   border-right: 3px solid var(--red);
 }
