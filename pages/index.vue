@@ -19,7 +19,6 @@
             <circle cx="12" cy="12" r="10" fill="currentColor" />
           </svg>
           <h2 id="shape-heading" class="panel__title">Shape</h2>
-          <p class="panel__desc">What do we draw?</p>
         </header>
         <div class="panel__body">
           <div class="field-shell">
@@ -80,7 +79,6 @@
             <rect x="4" y="4" width="16" height="16" fill="currentColor" />
           </svg>
           <h2 id="math-heading" class="panel__title">Math</h2>
-          <p class="panel__desc">What do we solve?</p>
         </header>
         <div class="panel__body">
           <div class="checkbox-grid">
@@ -99,7 +97,6 @@
             <polygon points="12,3 21,20 3,20" fill="currentColor" />
           </svg>
           <h2 id="clues-heading" class="panel__title">Clues</h2>
-          <p class="panel__desc">What do we code?</p>
           <div class="clue-actions">
             <button v-if="showRegenerate && currentSteps.length" class="regen-btn" type="button" @click.prevent="generateSteps">
               Regenerate
@@ -449,19 +446,6 @@ export default Vue.extend({
   border-bottom: var(--rule-thin) solid var(--ink);
 }
 
-.panel__desc {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
-  opacity: 0.85;
-  margin: 0;
-}
-
 .panel--shape .panel__head {
   background: var(--blue);
   color: #fff;
@@ -708,6 +692,7 @@ export default Vue.extend({
 
 .clue-actions {
   flex-shrink: 0;
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 0.5rem;
