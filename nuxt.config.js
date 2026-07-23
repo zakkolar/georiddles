@@ -17,7 +17,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Generate math riddles that reveal the steps to program a robot to draw a shape or letter.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       { rel: 'stylesheet', href: '/fonts/fonts.css' }
     ]
   },
