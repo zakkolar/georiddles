@@ -15,15 +15,15 @@
     <main class="builder">
       <section class="panel panel--shape" aria-labelledby="shape-heading">
         <header class="panel__head">
-          <h2 id="shape-heading" class="panel__title">Shape</h2>
           <svg class="panel__glyph" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="10" fill="currentColor" />
           </svg>
+          <h2 id="shape-heading" class="panel__title">Shape</h2>
+          <p class="panel__desc">What do we draw?</p>
         </header>
         <div class="panel__body">
-          <label class="field-label" for="shape-select">Draw a&hellip;</label>
           <div class="select-shell">
-            <select id="shape-select" class="select" v-model="currentShapeKey">
+            <select id="shape-select" class="select" aria-label="Shape" v-model="currentShapeKey">
               <optgroup v-for="category of shapeCategories" :key="category" :label="category">
                 <option
                   v-for="shape of shapes.filter(item => item.category === category)"
@@ -63,13 +63,13 @@
 
       <section class="panel panel--math" aria-labelledby="math-heading">
         <header class="panel__head">
-          <h2 id="math-heading" class="panel__title">Math</h2>
           <svg class="panel__glyph" viewBox="0 0 24 24" aria-hidden="true">
             <rect x="4" y="4" width="16" height="16" fill="currentColor" />
           </svg>
+          <h2 id="math-heading" class="panel__title">Math</h2>
+          <p class="panel__desc">What do we solve?</p>
         </header>
         <div class="panel__body">
-          <p class="field-label">Include these problem types</p>
           <div class="checkbox-grid">
             <label class="check" v-for="item of transformations" :key="item.label">
               <input class="check__input" type="checkbox" :value="item.label" v-model="chosenTransformationKeys">
@@ -82,7 +82,11 @@
 
       <section class="panel panel--clues" aria-labelledby="clues-heading">
         <header class="panel__head">
+          <svg class="panel__glyph" viewBox="0 0 24 24" aria-hidden="true">
+            <polygon points="12,3 21,20 3,20" fill="currentColor" />
+          </svg>
           <h2 id="clues-heading" class="panel__title">Clues</h2>
+          <p class="panel__desc">What do we code?</p>
           <div class="clue-actions">
             <button v-if="showRegenerate && currentSteps.length" class="regen-btn" type="button" @click.prevent="generateSteps">
               Regenerate
@@ -329,8 +333,6 @@ export default Vue.extend({
   padding: 2.75rem 1.5rem 4.5rem;
 }
 
-/* ---------- Hero ---------- */
-
 .hero {
   margin-bottom: 2.5rem;
   --geo-mark-size: clamp(1.8rem, 4.5vw, 3rem);
@@ -369,8 +371,6 @@ export default Vue.extend({
   opacity: 0.85;
   margin-left: var(--hero-indent);
 }
-
-/* ---------- Builder grid ---------- */
 
 .builder {
   border: var(--rule) solid var(--ink);
@@ -418,15 +418,26 @@ export default Vue.extend({
   }
 }
 
-/* ---------- Panel chrome ---------- */
-
 .panel__head {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  height: 3.35rem;
-  padding: 0 1.1rem;
+  gap: 0.6rem;
+  min-height: 3.35rem;
+  padding: 0.5rem 1.1rem;
   border-bottom: var(--rule-thin) solid var(--ink);
+}
+
+.panel__desc {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  margin: 0;
 }
 
 .panel--shape .panel__head {
@@ -449,13 +460,14 @@ export default Vue.extend({
   text-transform: uppercase;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
-  flex: 1;
+  flex: 0 0 auto;
 }
 
 .panel__glyph {
   width: 18px;
   height: 18px;
   opacity: 0.9;
+  flex-shrink: 0;
 }
 
 .panel__body {
@@ -467,16 +479,6 @@ export default Vue.extend({
   min-height: 0;
   display: flex;
   flex-direction: column;
-}
-
-.field-label {
-  display: block;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.75rem;
-  margin-bottom: 0.55rem;
-  opacity: 0.7;
 }
 
 /* ---------- Shape select ---------- */
@@ -669,7 +671,7 @@ export default Vue.extend({
 /* ---------- Clues ---------- */
 
 .clue-actions {
-  margin-left: auto;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
